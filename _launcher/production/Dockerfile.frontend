@@ -1,0 +1,15 @@
+FROM node:18-alpine as dependencies
+WORKDIR /opt/build
+COPY package.json package-lock.json ./
+RUN npm install --frozen-lockfile
+
+FROM node:18-alpine as builder
+WORKDIR /opt/build
+COPY . .
+COPY --from=dependencies /opt/build/node_modules ./node_modules
+
+EXPOSE 3000
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/bin/sh", "./docker-entrypoint.sh"]

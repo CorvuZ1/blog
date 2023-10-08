@@ -1,0 +1,41 @@
+version: "3"
+
+dotenv: [".env"]
+
+tasks:
+  env:
+    desc: Создать .env файлы
+    cmds:
+      - cp .env.example .env
+      - cp .env.example ../frontend/.env
+      - cp .env.example ../backend/.env
+
+  pmode:
+    - echo 'MODE:' $NODE_ENV
+
+  dc:
+    desc: Удалить все контейнеры
+    cmds:
+      - docker rm $(docker ps -a -f status=exited -f status=created -q)
+
+  sc:
+    desc: Остановить все контейнеры
+    cmds:
+      - docker stop $(docker ps -a -q)
+
+  up:
+    desc: Запустить сервисы
+    cmds:
+      - docker-compose up -d
+
+  build:
+    desc: Собрать сервисы без кэша
+    cmds:
+      - docker-compose build --no-cache
+
+  start:
+    desc: Запустить проект
+    cmds:
+      - task pmode
+      - task build
+      - task up

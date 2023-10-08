@@ -1,0 +1,87 @@
+version: "3.8"
+
+services:
+  database:
+    container_name: database
+    image: postgres:14.1-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - strapi
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_DB: ${DATABASE_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+
+  backend:
+    container_name: backend
+    depends_on:
+      database:
+        condition: service_healthy
+    build:
+      context: ../backend
+      dockerfile: "../_launcher/${NODE_ENV}/Dockerfile.backend"
+    restart: always
+    ports:
+      - 1337:1337
+    volumes:
+      - ../backend:/opt/app
+    networks:
+      - strapi
+    environment:
+      DATABASE_HOST: database
+      DATABASE_CLIENT: postgres
+      DATABASE_PORT: 5432
+      DATABASE_SSL: "false"
+    healthcheck:
+      test: ["CMD", "curl", "http://backend:1337/api/hello"]
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+
+  frontend:
+    restart: always
+    depends_on:
+      backend:
+        condition: service_healthy
+    container_name: frontend
+    build:
+      context: ../frontend
+      dockerfile: "../_launcher/${NODE_ENV}/Dockerfile.frontend"
+    ports:
+      - 3000:3000
+    volumes:
+      - ../frontend:/opt/app
+      - /opt/app/node_modules
+    networks:
+      - strapi
+
+  web:
+    container_name: web
+    image: nginx:latest
+    restart: always
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - strapi
+    volumes:
+      - ../web:/etc/nginx/conf.d
+    ports:
+      - 80:80
+
+networks:
+  strapi:
+volumes:
+  database:
+    name: "database_volume"
