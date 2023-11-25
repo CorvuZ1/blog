@@ -12,7 +12,7 @@ export const Layout: FC<ILayoutProps> = props => {
   const { children, className } = props;
 
   return (
-    <div className={twMerge(className, SFPro.variable, "font-sf-pro text-md")}>
+    <div className={twMerge(SFPro.variable, "font-sf-pro text-md", className)}>
       <div className="font-regular">
         <Header />
         <main>{children}</main>

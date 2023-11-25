@@ -11,13 +11,24 @@ module.exports = withMT({
     `${modulesPath}/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}`
   ],
   theme: {
+    fontWeight: {
+      regular: "400",
+      heavy: "800"
+    },
+    fontFamily: {
+      "sf-pro": ["var(--sf-pro)", "sans-serif"]
+    },
+    screens: {
+      lg: { max: "800px" },
+      md: { max: "576px" },
+      sm: { max: "400px" }
+    },
     extend: {
-      fontWeight: {
-        regular: "400",
-        heavy: "800"
-      },
-      fontFamily: {
-        "sf-pro": ["var(--sf-pro)", "sans-serif"]
+      colors: {
+        green: "#008060",
+        "light-green": "#00806042",
+        "dark-green": "#002621",
+        black: "#001818"
       },
       fontSize: {
         xs: ["12px", "normal"],
