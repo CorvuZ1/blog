@@ -12,6 +12,6 @@
   }
 
   body {
-    @apply min-w-[320px];
+    @apply min-w-[320px] bg-black;
   }
 }
