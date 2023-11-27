@@ -24,9 +24,24 @@ module.exports = withMT({
       sm: { max: "400px" }
     },
     extend: {
+      keyframes: {
+        "smooth-appearance": {
+          "0%": {
+            opacity: 0,
+            transform: "scale(0)"
+          },
+          "100%": {
+            opacity: 1,
+            transform: "scale(1)"
+          }
+        }
+      },
+      animation: {
+        "smooth-appearance": "smooth-appearance ease-in-out 0.3s forwards"
+      },
       colors: {
         green: "#008060",
-        "light-green": "#00806042",
+        "translucent-green": "#00806042",
         "dark-green": "#002621",
         black: "#001818"
       },
