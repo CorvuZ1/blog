@@ -1,7 +1,9 @@
 import { FC, useEffect } from "react";
 import { Swiper } from "swiper";
+import { Pagination } from "swiper/modules";
 import { twMerge } from "tailwind-merge";
 import "swiper/css";
+import "swiper/css/pagination";
 
 export interface ISliderItem {
   img: string;
@@ -18,7 +20,19 @@ export const Slider: FC<ISliderProps> = props => {
 
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
-      slidesPerView: 1
+      slidesPerView: 1,
+      spaceBetween: 15,
+      modules: [Pagination],
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        enabled: true,
+        clickable: true,
+        type: "bullets",
+        renderBullet() {
+          return "<button class='swiper-pagination-bullet !bg-green !w-[12px] !h-[12px]'></button>";
+        }
+      }
     });
 
     return () => {

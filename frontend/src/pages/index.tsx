@@ -8,7 +8,9 @@ const HomePage: NextPage = props => {
       <Slider
         items={[
           { label: "first", img: "first" },
-          { label: "second", img: "second" }
+          { label: "second", img: "second" },
+          { label: "third", img: "third" },
+          { label: "four", img: "four" }
         ]}
       />
     </Layout>
