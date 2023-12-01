@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Header } from "~/components/header/header";
 import { Container } from "~/components/container/container";
 import { SFPro } from "~/lib/utils/fonts/fonts";
-import { useTheme } from "~/lib/hooks/useTheme";
+import { useTheme } from "~/lib/hooks/theme";
 
 export interface ILayoutProps {
   children: ReactNode;

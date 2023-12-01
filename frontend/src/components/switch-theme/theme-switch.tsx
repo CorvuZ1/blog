@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Switch } from "@material-tailwind/react";
 import { twMerge } from "tailwind-merge";
-import { useTheme } from "~/lib/hooks/useTheme";
+import { useTheme } from "~/lib/hooks/theme";
 
 export const SwitchTheme: FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  const isChecked = theme === "dark" ? true : false;
+  const isChecked = theme === "dark";
 
   return (
     <Switch
