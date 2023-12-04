@@ -15,7 +15,7 @@ const HomePage: NextPage<IHomePageProps> = ({ slides }) => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
-  const data = await getAllWorks(`?populate=Image`);
+  const data = await getAllWorks("?populate=Preview_Image&pagination[limit]=6&sort=createdAt:desc");
 
   if (!data) {
     return {

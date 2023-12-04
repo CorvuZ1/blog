@@ -31,20 +31,20 @@ export interface IAttributes {
   createdAt: string;
   updatedAt: string;
   Name: string;
-  Image: IImage;
+  Preview_Image: IPreviewImage;
   Model: IModel;
 }
 
-export interface IImage {
-  data: IImageData;
+export interface IPreviewImage {
+  data: IPreviewImageData;
 }
 
-export interface IImageData {
+export interface IPreviewImageData {
   id: number;
-  attributes: IImageAttributes;
+  attributes: IPreviewImageAttributes;
 }
 
-export interface IImageAttributes {
+export interface IPreviewImageAttributes {
   name: string;
   alternativeText: string;
   caption: string;

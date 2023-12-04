@@ -50,7 +50,7 @@ export const Slider: FC<ISliderProps> = props => {
       <div className="swiper-wrapper ">
         {items.map(slide => (
           <div className="swiper-slide" key={slide.id}>
-            <div className="relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-90%">
+            <div className="relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-100%">
               <Image
                 quality={80}
                 className="absolute left-0 top-0 z-0 h-full w-full object-cover"
@@ -59,7 +59,9 @@ export const Slider: FC<ISliderProps> = props => {
                 width={slide.width}
                 height={slide.height}
               />
-              <p className="absolute left-[33px] top-[26px]">{slide.label}</p>
+              <p className="text-xxl font-heavy absolute left-0 top-0 px-[33px] pt-[26px]">
+                {slide.label}
+              </p>
             </div>
           </div>
         ))}
