@@ -12,14 +12,7 @@ export interface IHeaderProps {
 export const Header: FC<IHeaderProps> = ({ className }) => {
   return (
     <header className={twMerge("flex items-end pt-[24px]", className)}>
-      <Image
-        className="mr-auto"
-        isLazy={false}
-        src="/imgs/base/logo.svg"
-        width={78}
-        height={27}
-        alt="3DS лого"
-      />
+      <Image className="mr-auto" src="/imgs/base/logo.svg" width={78} height={27} alt="3DS лого" />
       <HeaderNav links={HEADER_NAVIGATION} />
       <SwitchTheme />
     </header>

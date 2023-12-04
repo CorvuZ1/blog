@@ -2,11 +2,14 @@ import NextImage, { ImageProps } from "next/image";
 import { FC } from "react";
 
 export interface IImageProps extends Omit<ImageProps, "loading"> {
-  isLazy?: boolean;
+  src: string;
 }
 
 export const Image: FC<IImageProps> = props => {
-  const { isLazy = true, ...rest } = props;
+  const { src, ...rest } = props;
 
-  return <NextImage {...rest} loading="eager" {...(isLazy && { "data-lazy-src": "" })} />;
+  const serverImagePath = process.env.NEXT_PUBLIC_NGINX_HOSTNAME;
+  const imgPath = src.startsWith("/uploads") ? serverImagePath + src : src;
+
+  return <NextImage src={imgPath} {...rest} />;
 };

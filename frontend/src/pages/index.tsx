@@ -26,11 +26,11 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
     };
   }
 
-  const formatData = mapDataToHomePageProps(data);
+  const { slides } = mapDataToHomePageProps(data);
 
   return {
     props: {
-      slides: formatData
+      slides
     },
     revalidate: 3600
   };

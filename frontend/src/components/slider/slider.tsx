@@ -4,12 +4,15 @@ import { Pagination } from "swiper/modules";
 import { twMerge } from "tailwind-merge";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Image } from "~/components/image/image";
 
 export interface ISliderItem {
   img: string;
   label: string;
   alt: string;
   id: number;
+  width: number;
+  height: number;
 }
 
 export interface ISliderProps {
@@ -48,10 +51,13 @@ export const Slider: FC<ISliderProps> = props => {
         {items.map(slide => (
           <div className="swiper-slide" key={slide.id}>
             <div className="relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-90%">
-              <img
+              <Image
+                quality={80}
                 className="absolute left-0 top-0 z-0 h-full w-full object-cover"
                 src={slide.img}
                 alt={slide.alt}
+                width={slide.width}
+                height={slide.height}
               />
               <p className="absolute left-[33px] top-[26px]">{slide.label}</p>
             </div>
