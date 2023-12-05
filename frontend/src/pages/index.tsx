@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from "next";
 import { Layout } from "~/components/layout/layout";
 import { Slider, ISliderProps } from "~/components/slider/slider";
 import { getAllWorks } from "~/lib/api/works";
-import { mapDataToHomePageProps } from "~/lib/helpers/data-mappers/home";
+import { mapDataToHomeSliderProps } from "~/lib/helpers/data-mappers/slider";
 
 export interface IHomePageProps {
   slides: ISliderProps["items"];
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
     };
   }
 
-  const { slides } = mapDataToHomePageProps(data);
+  const slides = mapDataToHomeSliderProps(data);
 
   return {
     props: {

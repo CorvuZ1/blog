@@ -29,13 +29,14 @@ export const Slider: FC<ISliderProps> = props => {
       spaceBetween: 20,
       modules: [Pagination],
       loop: true,
+      grabCursor: true,
       pagination: {
         el: ".swiper-pagination",
         enabled: true,
         clickable: true,
         type: "bullets",
         renderBullet() {
-          return "<button class='swiper-pagination-bullet !bg-green !w-[12px] !h-[12px]'></button>";
+          return "<button class='swiper-pagination-bullet !bg-green !w-[10px] !h-[10px]'></button>";
         }
       }
     });
