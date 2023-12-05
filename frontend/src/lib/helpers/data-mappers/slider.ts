@@ -1,7 +1,7 @@
 import { ISliderProps } from "~/components/slider/slider";
 import { IGetAllWorksResponse } from "~/lib/api/works";
 
-export const mapDataToHomeSliderProps = ({ data }: IGetAllWorksResponse): ISliderProps["items"] =>
+export const mapDataToSliderProps = ({ data }: IGetAllWorksResponse): ISliderProps["items"] =>
   data.map(item => ({
     img: item.attributes.Preview_Image.data.attributes.url,
     label: item.attributes.Name,

@@ -9,8 +9,8 @@ import { Image } from "~/components/image/image";
 export interface ISliderItem {
   img: string;
   label: string;
-  alt: string;
-  id: number;
+  alt?: string;
+  id?: number;
   width: number;
   height: number;
 }
@@ -49,14 +49,14 @@ export const Slider: FC<ISliderProps> = props => {
   return (
     <div className={twMerge("swiper overflow-hidden rounded-[52px]", className)}>
       <div className="swiper-wrapper ">
-        {items.map(slide => (
-          <div className="swiper-slide" key={slide.id}>
+        {items.map((slide, index) => (
+          <div className="swiper-slide" key={slide.id || index}>
             <div className="relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-100%">
               <Image
                 quality={80}
                 className="absolute left-0 top-0 z-0 h-full w-full object-cover"
                 src={slide.img}
-                alt={slide.alt}
+                alt={slide.alt || ""}
                 width={slide.width}
                 height={slide.height}
               />
