@@ -22,7 +22,7 @@ export const HeaderNavLink: FC<IHeaderNavLinkProps> = props => {
       className={twMerge(
         "opacity-90 duration-200 hover:opacity-100",
         isActive &&
-          "after:bg-green after:animate-smooth-appearance flex justify-center opacity-100 after:absolute after:bottom-[-17px] after:h-[10px] after:w-[10px] after:rounded-xl after:content-['']",
+          "after:bg-green after:animate-smooth-appearance flex justify-center opacity-100 after:absolute after:bottom-[-17px] after:h-[12px] after:w-[12px] after:rounded-xl after:content-['']",
         className
       )}
     >

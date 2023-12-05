@@ -31,6 +31,7 @@ export interface IAttributes {
   createdAt: string;
   updatedAt: string;
   Name: string;
+  Slug: string;
   Preview_Image: IPreviewImage;
   Model: IModel;
 }
