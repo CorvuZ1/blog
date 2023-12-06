@@ -8,9 +8,9 @@ import { Image } from "~/components/image/image";
 import Link from "next/link";
 
 export interface ISliderItem {
-  img: string;
+  image: string;
   label: string;
-  slug?: string;
+  href?: string;
   alt?: string;
   id?: number;
   width: number;
@@ -36,9 +36,9 @@ export const Slider: FC<ISliderProps> = props => {
         enabled: true,
         clickable: true,
         type: "bullets",
-        renderBullet() {
-          return "<button class='swiper-pagination-bullet !bg-green !w-[12px] !h-[12px]'></button>";
-        }
+        bulletActiveClass: "!opacity-100 !px-[12px] !opacity-[1] !rounded-full duration-[0.4s]",
+        renderBullet: (index, className) =>
+          `<button class='${className} swiper-pagination-bullet !opacity-40 duration-300 !bg-green !w-[12px] !h-[12px]'></button>`
       }
     });
 
@@ -48,12 +48,11 @@ export const Slider: FC<ISliderProps> = props => {
   }, []);
 
   return (
-    <div className={twMerge("swiper overflow-hidden rounded-[52px]", className)}>
+    <div className={twMerge("swiper overflow-hidden rounded-[52px] md:rounded-[35px]", className)}>
       <div className="swiper-wrapper ">
         {items.map((slide, index) => {
-          const { slug } = slide;
-          const Tag = slug ? Link : "div";
-          const href = slug && `/blog/${slug}`;
+          const { href } = slide;
+          const Tag = href ? Link : "div";
 
           return (
             <div className="swiper-slide" key={slide.id || index}>
@@ -64,7 +63,7 @@ export const Slider: FC<ISliderProps> = props => {
                 <Image
                   quality={80}
                   className="absolute left-0 top-0 z-0 h-full w-full object-cover"
-                  src={slide.img}
+                  src={slide.image}
                   alt={slide.alt || ""}
                   width={slide.width}
                   height={slide.height}

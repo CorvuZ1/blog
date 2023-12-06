@@ -27,9 +27,9 @@ export const Layout: FC<ILayoutProps> = props => {
       <div className={twMerge(SFPro.variable, "font-sf-pro text-md text-white", className, theme)}>
         <div className="font-regular">
           <Container>
-            <Header />
-            <main className="mt-[55px]">{children}</main>
+            <Header className="mb-[55px]" />
           </Container>
+          <main>{children}</main>
         </div>
       </div>
     </>

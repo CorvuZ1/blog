@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { HeaderNav } from "~/components/header-nav/header-nav";
 import { Image } from "~/components/image/image";
 import { SwitchTheme } from "~/components/switch-theme/theme-switch";
-import { HEADER_NAVIGATION } from "~/data/header-navigation/header-navigation";
+import { HEADER_NAVIGATION } from "~/data/header/navigation";
 
 export interface IHeaderProps {
   className?: string;

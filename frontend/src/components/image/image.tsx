@@ -9,7 +9,7 @@ export const Image: FC<IImageProps> = props => {
   const { src, ...rest } = props;
 
   const serverImagePath = process.env.NEXT_PUBLIC_NGINX_HOSTNAME;
-  const imgPath = src.startsWith("/uploads") ? serverImagePath + src : src;
+  const imagePath = src.startsWith("/uploads") ? serverImagePath + src : src;
 
-  return <NextImage src={imgPath} {...rest} />;
+  return <NextImage src={imagePath} {...rest} />;
 };
