@@ -1,4 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
+import { About, IAboutProps } from "~/components/about/about";
 import { Container } from "~/components/container/container";
 import { Layout } from "~/components/layout/layout";
 import { Section } from "~/components/section/section";
@@ -9,9 +10,12 @@ import { mapDataToSliderProps } from "~/lib/helpers/data-mappers/slider";
 
 export interface IHomePageProps {
   slides: ISliderProps["items"];
+  about: IAboutProps;
 }
 
-const HomePage: NextPage<IHomePageProps> = ({ slides }) => {
+const HomePage: NextPage<IHomePageProps> = props => {
+  const { slides, about } = props;
+
   return (
     <Layout>
       {slides.length > 0 && (
@@ -25,6 +29,11 @@ const HomePage: NextPage<IHomePageProps> = ({ slides }) => {
       <Container size="sm">
         <Section>
           <Title>Обо мне</Title>
+          <About
+            image="/imgs/base/logo.svg"
+            alt="obo mne"
+            description="weuwn funwef nwunf uwnne unf unwe fnwu"
+          />
         </Section>
       </Container>
     </Layout>
