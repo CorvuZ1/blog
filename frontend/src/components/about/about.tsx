@@ -18,7 +18,7 @@ export const About: FC<IAboutProps> = props => {
   return (
     <div className={twMerge("flex", className)}>
       <div>
-        <Image width={width} height={height} src={image} alt={alt || ""} />
+        <Image className="w-full" width={width} height={height} src={image} alt={alt || ""} />
       </div>
       <div>{HTMLReactParser(description)}</div>
     </div>
