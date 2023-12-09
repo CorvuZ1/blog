@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { twMerge } from "tailwind-merge";
 import { Image } from "~/components/image/image";
+import HTMLReactParser from "html-react-parser";
 
 export interface IAboutProps {
   image: string;
@@ -19,7 +20,7 @@ export const About: FC<IAboutProps> = props => {
       <div>
         <Image width={width} height={height} src={image} alt={alt || ""} />
       </div>
-      <p>{description}</p>
+      <div>{HTMLReactParser(description)}</div>
     </div>
   );
 };

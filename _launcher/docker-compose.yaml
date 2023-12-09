@@ -35,6 +35,7 @@ services:
       - 1337:1337
     volumes:
       - ../backend:/opt/app
+      - /opt/app/node_modules
     networks:
       - strapi
     environment:
