@@ -1,8 +1,8 @@
 import { ISliderProps } from "~/components/slider/slider";
-import { IGetAllWorksResponse } from "~/lib/api/works";
+import { TGetAllWorksResponse } from "~/lib/api/get/works";
 
 export const mapDataToSliderProps = (
-  { data }: IGetAllWorksResponse,
+  { data }: TGetAllWorksResponse,
   baseHrefUrl?: string
 ): ISliderProps["items"] =>
   data.map(item => ({

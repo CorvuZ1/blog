@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export interface ISliderItem {
   image: string;
-  label: string;
+  label?: string;
   href?: string;
   alt?: string;
   id?: number;
@@ -68,9 +68,11 @@ export const Slider: FC<ISliderProps> = props => {
                   width={slide.width}
                   height={slide.height}
                 />
-                <p className="text-xxl font-heavy absolute left-0 top-0 px-[33px] pt-[26px]">
-                  {slide.label}
-                </p>
+                {slide.label && (
+                  <p className="text-xxl font-heavy absolute left-0 top-0 px-[33px] pt-[26px]">
+                    {slide.label}
+                  </p>
+                )}
               </Tag>
             </div>
           );

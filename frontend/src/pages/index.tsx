@@ -5,7 +5,8 @@ import { Layout } from "~/components/layout/layout";
 import { Section } from "~/components/section/section";
 import { Slider, ISliderProps } from "~/components/slider/slider";
 import { Title } from "~/components/title/title";
-import { getAllWorks } from "~/lib/api/works";
+import { getAbout } from "~/lib/api/get/about";
+import { getAllWorks } from "~/lib/api/get/works";
 import { mapDataToSliderProps } from "~/lib/helpers/data-mappers/slider";
 
 export interface IHomePageProps {
@@ -15,6 +16,8 @@ export interface IHomePageProps {
 
 const HomePage: NextPage<IHomePageProps> = props => {
   const { slides, about } = props;
+
+  console.log(about);
 
   return (
     <Layout>
@@ -30,9 +33,11 @@ const HomePage: NextPage<IHomePageProps> = props => {
         <Section>
           <Title>Обо мне</Title>
           <About
-            image="/imgs/base/logo.svg"
-            alt="obo mne"
-            description="weuwn funwef nwunf uwnne unf unwe fnwu"
+            image={about.image}
+            alt={about.alt}
+            description={about.description}
+            width={about.width}
+            height={about.height}
           />
         </Section>
       </Container>
@@ -43,22 +48,28 @@ const HomePage: NextPage<IHomePageProps> = props => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
-  const data = await getAllWorks("?populate=Preview_Image&pagination[limit]=8&sort=createdAt:desc");
+  const about = await getAbout("?populate=Image");
+  const works = await getAllWorks(
+    "?populate=Preview_Image&pagination[limit]=8&sort=createdAt:desc"
+  );
 
-  if (!data) {
+  if (!about) {
     return {
-      props: {
-        slides: []
-      },
+      notFound: true,
       revalidate: 120
     };
   }
 
-  const slides = mapDataToSliderProps(data, "/blog/");
-
   return {
     props: {
-      slides
+      slides: works ? mapDataToSliderProps(works, "/blog/") : [],
+      about: {
+        description: about.data.attributes.Description,
+        image: about.data.attributes.Image.data.attributes.url,
+        width: about.data.attributes.Image.data.attributes.width,
+        height: about.data.attributes.Image.data.attributes.height,
+        alt: about.data.attributes.Image.data.attributes.alternativeText
+      }
     },
     revalidate: 3600
   };
