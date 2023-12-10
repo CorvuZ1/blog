@@ -1,14 +1,3 @@
-export const HEADER_NAVIGATION = [
-  {
-    href: "/",
-    label: "Обо мне"
-  },
-  {
-    href: "/blog",
-    label: "Блог"
-  },
-  {
-    href: "/contacts",
-    label: "Контакты"
-  }
-];
+import { ROUTES } from "../routes/routes";
+
+export const HEADER_NAVIGATION = [ROUTES.about, ROUTES.blog, ROUTES.contacts];

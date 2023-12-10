@@ -12,6 +12,6 @@
   }
 
   body {
-    @apply min-w-[320px] bg-black;
+    @apply animate-gradient-animation bg-lg min-h-screen min-w-[320px] bg-[linear-gradient(135deg,#002828,#001818,#002828)];
   }
 }

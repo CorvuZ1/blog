@@ -16,8 +16,8 @@ export const About: FC<IAboutProps> = props => {
   const { description, image, className, alt, height, width } = props;
 
   return (
-    <div className={twMerge("xs:flex-col flex", className)}>
-      <div className="xs:mr-[0px] xs:mb-[20px] xs:before:pt-[80%] relative mr-[20px] h-fit flex-1 overflow-hidden before:relative before:block before:pt-[119.17%] md:mr-[10px]">
+    <div className={twMerge("flex md:flex-col", className)}>
+      <div className="relative mr-[20px] h-fit flex-1 overflow-hidden before:relative before:block before:pt-[119.17%] md:mb-[20px] md:mr-[0px] md:before:pt-[65%]">
         <Image
           className="absolute left-0 top-0 h-full w-full rounded-[42px] object-cover md:rounded-[25px]"
           width={width}

@@ -5,6 +5,7 @@ import { Header } from "~/components/header/header";
 import { Container } from "~/components/container/container";
 import { SFPro } from "~/lib/utils/fonts/fonts";
 import { useTheme } from "~/lib/hooks/theme";
+import { HEADER_NAVIGATION } from "~/data/header/navigation";
 
 export interface ILayoutProps {
   children: ReactNode;
@@ -27,7 +28,7 @@ export const Layout: FC<ILayoutProps> = props => {
       <div className={twMerge(SFPro.variable, "font-sf-pro text-md text-white", className, theme)}>
         <div className="font-regular">
           <Container>
-            <Header className="mb-[55px]" />
+            <Header navLinks={HEADER_NAVIGATION} className="mb-[55px]" />
           </Container>
           <main>{children}</main>
         </div>

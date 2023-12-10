@@ -11,6 +11,9 @@ module.exports = withMT({
     `${modulesPath}/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}`
   ],
   theme: {
+    backgroundSize: {
+      lg: "200% 200%"
+    },
     fontWeight: {
       regular: "400",
       heavy: "800"
@@ -34,10 +37,22 @@ module.exports = withMT({
             opacity: 1,
             transform: "scale(1)"
           }
+        },
+        "gradient-animation": {
+          "0%": {
+            "background-position": "10% 0%"
+          },
+          "50%": {
+            "background-position": "91% 100%"
+          },
+          "100%": {
+            "background-position": "10% 0%"
+          }
         }
       },
       animation: {
-        "smooth-appearance": "smooth-appearance ease-in-out 0.3s forwards"
+        "smooth-appearance": "smooth-appearance ease-in-out 0.3s forwards",
+        "gradient-animation": "gradient-animation 10s infinite"
       },
       colors: {
         green: "#008060",
