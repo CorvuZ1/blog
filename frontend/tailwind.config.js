@@ -21,7 +21,7 @@ module.exports = withMT({
     screens: {
       lg: { max: "800px" },
       md: { max: "576px" },
-      sm: { max: "400px" }
+      xs: { max: "400px" }
     },
     extend: {
       keyframes: {

@@ -29,7 +29,7 @@ const HomePage: NextPage<IHomePageProps> = props => {
         </Section>
       )}
 
-      <Container size="sm">
+      <Container size="xs">
         <Section>
           <Title>Обо мне</Title>
           <About
