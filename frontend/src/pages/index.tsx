@@ -17,8 +17,6 @@ export interface IHomePageProps {
 const HomePage: NextPage<IHomePageProps> = props => {
   const { slides, about } = props;
 
-  console.log(about);
-
   return (
     <Layout>
       {slides.length > 0 && (

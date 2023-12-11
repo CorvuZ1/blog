@@ -5,7 +5,8 @@ import { Header } from "~/components/header/header";
 import { Container } from "~/components/container/container";
 import { SFPro } from "~/lib/utils/fonts/fonts";
 import { useTheme } from "~/lib/hooks/theme";
-import { HEADER_NAVIGATION } from "~/data/header/navigation";
+import { HEADER_NAVIGATION, STICKY_NAV_NAVIGATION } from "~/data/navigation/navigation";
+import { StickyNav } from "../sticky-nav/sticky-nav";
 
 export interface ILayoutProps {
   children: ReactNode;
@@ -31,6 +32,7 @@ export const Layout: FC<ILayoutProps> = props => {
             <Header navLinks={HEADER_NAVIGATION} className="mb-[55px]" />
           </Container>
           <main>{children}</main>
+          <StickyNav links={STICKY_NAV_NAVIGATION.about} />
         </div>
       </div>
     </>
