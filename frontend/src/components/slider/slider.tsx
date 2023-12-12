@@ -39,7 +39,7 @@ export const Slider: FC<ISliderProps> = props => {
         type: "bullets",
         bulletActiveClass: "!opacity-100 !px-[12px] !opacity-[1] !rounded-full duration-[0.4s]",
         renderBullet: (index, className) =>
-          `<button class='${className} swiper-pagination-bullet !opacity-40 duration-300 !bg-green !w-[12px] !h-[12px]'></button>`
+          `<button class='${className} swiper-pagination-bullet !opacity-40 duration-300 !bg-light-green !w-[12px] !h-[12px]'></button>`
       }
     });
 
@@ -62,7 +62,7 @@ export const Slider: FC<ISliderProps> = props => {
                 className="xs:before:pt-[65%] relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-100%"
               >
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
-                  <Spinner className="text-green/80 h-12 w-12" />
+                  <Spinner className="text-light-green/80 h-12 w-12" />
                 </div>
                 <Image
                   quality={80}

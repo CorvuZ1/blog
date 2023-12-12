@@ -19,7 +19,7 @@ export const SwitchTheme: FC = () => {
       }}
       circleProps={{
         className: twMerge(
-          "w-[24px] h-[24px] before:hidden flex items-center justify-center left-[-2px] after:bg-[length:contain] border-none bg-green after:absolute after:bg-center after:bg-no-repeat",
+          "w-[24px] h-[24px] before:hidden flex items-center justify-center left-[-2px] after:bg-[length:contain] border-none bg-light-green after:absolute after:bg-center after:bg-no-repeat",
           isChecked
             ? "after:bg-[url('/icons/dark.svg')] after:w-[12px] after:h-[12px]"
             : "after:bg-[url('/icons/light.svg')] after:w-[21px] after:h-[21px]"

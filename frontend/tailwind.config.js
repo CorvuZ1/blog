@@ -55,8 +55,9 @@ module.exports = withMT({
         "gradient-animation": "gradient-animation 10s infinite"
       },
       colors: {
-        green: "#008060",
+        "light-green": "#008060",
         "translucent-green": "#00806042",
+        green: "#003730",
         "dark-green": "#002621",
         black: "#001818"
       },
