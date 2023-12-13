@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { twMerge } from "tailwind-merge";
 import { Container } from "~/components/container/container";
+import { Button } from "~/components/button/button";
 
-export interface IStickyNavProps {
+export interface IFixedNavProps {
   className?: string;
   links: {
     label: string;
@@ -10,14 +11,16 @@ export interface IStickyNavProps {
   }[];
 }
 
-export const StickyNav: FC<IStickyNavProps> = props => {
+export const FixedNav: FC<IFixedNavProps> = props => {
   const { links, className } = props;
 
   return (
     <div className={twMerge("fixed bottom-0 w-full", className)}>
       <Container className="flex w-full justify-between" size="xs">
         {links.map((item, index) => (
-          <div>{item.label}</div>
+          <Button href={item.href} key={index}>
+            {item.label}
+          </Button>
         ))}
       </Container>
     </div>

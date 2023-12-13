@@ -3,10 +3,10 @@ import { twMerge } from "tailwind-merge";
 import Head from "next/head";
 import { Header } from "~/components/header/header";
 import { Container } from "~/components/container/container";
+import { FixedNav } from "~/components/fixed-nav/fixed-nav";
 import { SFPro } from "~/lib/utils/fonts/fonts";
 import { useTheme } from "~/lib/hooks/theme";
-import { HEADER_NAVIGATION, STICKY_NAV_NAVIGATION } from "~/data/navigation/navigation";
-import { StickyNav } from "../sticky-nav/sticky-nav";
+import { HEADER_NAVIGATION, FIXED_NAV_NAVIGATION } from "~/data/navigation/navigation";
 
 export interface ILayoutProps {
   children: ReactNode;
@@ -31,8 +31,10 @@ export const Layout: FC<ILayoutProps> = props => {
           <Container>
             <Header navLinks={HEADER_NAVIGATION} className="mb-[55px]" />
           </Container>
-          <main>{children}</main>
-          <StickyNav links={STICKY_NAV_NAVIGATION.about} />
+          <main className="pb-[90px]">
+            {children}
+            <FixedNav className="z-10" links={FIXED_NAV_NAVIGATION.about} />
+          </main>
         </div>
       </div>
     </>
