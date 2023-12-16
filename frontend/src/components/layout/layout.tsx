@@ -4,9 +4,8 @@ import Head from "next/head";
 import { Header } from "~/components/header/header";
 import { Container } from "~/components/container/container";
 import { FixedNav } from "~/components/fixed-nav/fixed-nav";
-import { SFPro } from "~/lib/utils/fonts/fonts";
+import { SFPro } from "~/lib/fonts/fonts";
 import { useTheme } from "~/lib/hooks/theme";
-import { HEADER_NAVIGATION, FIXED_NAV_NAVIGATION } from "~/data/navigation/navigation";
 
 export interface ILayoutProps {
   children: ReactNode;
@@ -29,11 +28,11 @@ export const Layout: FC<ILayoutProps> = props => {
       <div className={twMerge(SFPro.variable, "font-sf-pro text-md text-white", className, theme)}>
         <div className="font-regular">
           <Container>
-            <Header navLinks={HEADER_NAVIGATION} className="mb-[55px]" />
+            <Header className="mb-[55px]" />
           </Container>
-          <main className="pb-[90px]">
+          <main className="pb-[100px]">
             {children}
-            <FixedNav className="z-10" links={FIXED_NAV_NAVIGATION.about} />
+            <FixedNav className="z-10" />
           </main>
         </div>
       </div>

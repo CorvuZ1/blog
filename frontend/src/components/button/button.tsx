@@ -18,7 +18,10 @@ export const Button: FC<IButtonProps> = props => {
   return (
     <Tag
       href={href as string}
-      className={twMerge("", className)}
+      className={twMerge(
+        "bg-light-green hover:bg-light-green/70 inline-block rounded-xl bg-right px-[25px] py-[12px] text-center duration-300 hover:bg-left",
+        className
+      )}
       target={!appLink ? "_blank" : undefined}
       onClick={onClick}
     >
