@@ -25,7 +25,14 @@ export const Layout: FC<ILayoutProps> = props => {
       <Head>
         <title>{headTitle}</title>
       </Head>
-      <div className={twMerge(SFPro.variable, "font-sf-pro text-md text-white", className, theme)}>
+      <div
+        className={twMerge(
+          SFPro.variable,
+          "font-sf-pro text-md overflow-hidden text-white",
+          className,
+          theme
+        )}
+      >
         <div className="font-regular">
           <Container>
             <Header className="mb-[55px]" />

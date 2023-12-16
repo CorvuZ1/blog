@@ -28,7 +28,7 @@ const HomePage: NextPage<IHomePageProps> = props => {
       )}
 
       <Container size="xs">
-        <Section>
+        <Section className="mb-0" animationSide="right">
           <Title>Обо мне</Title>
           <About
             image={about.image}

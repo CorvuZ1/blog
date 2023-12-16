@@ -35,7 +35,7 @@ export const FixedNav: FC<IFixedNavProps> = props => {
             variants={buttonVariants}
             initial="hidden"
             animate="visible"
-            transition={{ duration: 0.4, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.7 }}
             custom={index}
             key={index}
             className={twMerge("w-full max-w-[150px]", index === 0 && "mr-[15px]")}
