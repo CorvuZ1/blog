@@ -15,7 +15,7 @@ export const withAnimation = <Props extends {}>(Component: ComponentType<Props>)
       <motion.div
         initial={{ x, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Component {...props} />

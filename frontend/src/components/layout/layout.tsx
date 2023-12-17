@@ -34,7 +34,7 @@ export const Layout: FC<ILayoutProps> = props => {
         )}
       >
         <div className="font-regular">
-          <Container>
+          <Container size="lg">
             <Header className="mb-[55px]" />
           </Container>
           <main className="pb-[100px]">

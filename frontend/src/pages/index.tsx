@@ -21,13 +21,13 @@ const HomePage: NextPage<IHomePageProps> = props => {
     <Layout>
       {slides.length > 0 && (
         <Section isDiv>
-          <Container>
+          <Container size="lg">
             <Slider items={slides} />
           </Container>
         </Section>
       )}
 
-      <Container size="xs">
+      <Container>
         <Section className="mb-0" animationSide="right">
           <Title>Обо мне</Title>
           <About

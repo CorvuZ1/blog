@@ -8,11 +8,11 @@ export interface IContainerProps {
 }
 
 export const Container: FC<IContainerProps> = props => {
-  const { className, children, size = "lg" } = props;
+  const { className, children, size = "xs" } = props;
 
   const sizes: Record<NonNullable<IContainerProps["size"]>, string> = {
     lg: "max-w-[800px] px-[25px]",
-    xs: "max-w-[750px] px-[50px]"
+    xs: "max-w-[700px] px-[50px]"
   };
 
   return <div className={twMerge(sizes[size], "mx-auto md:px-[15px]", className)}>{children}</div>;
