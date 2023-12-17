@@ -2,6 +2,7 @@ import { FC } from "react";
 import { twMerge } from "tailwind-merge";
 import { Image } from "~/components/image/image";
 import HTMLReactParser from "html-react-parser";
+import { withAnimation } from "~/lib/hocs/with-animation";
 
 export interface IAboutProps {
   image: string;
@@ -12,7 +13,7 @@ export interface IAboutProps {
   alt?: string;
 }
 
-export const About: FC<IAboutProps> = props => {
+export const _About: FC<IAboutProps> = props => {
   const { description, image, className, alt, height, width } = props;
 
   return (
@@ -30,3 +31,5 @@ export const About: FC<IAboutProps> = props => {
     </div>
   );
 };
+
+export const About = withAnimation<IAboutProps>(_About);

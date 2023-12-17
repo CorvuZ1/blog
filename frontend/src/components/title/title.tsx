@@ -1,5 +1,6 @@
 import { FC, ReactNode, JSX } from "react";
 import { twMerge } from "tailwind-merge";
+import { withAnimation } from "~/lib/hocs/with-animation";
 
 export interface ITitleProps {
   tag?: keyof JSX.IntrinsicElements;
@@ -7,7 +8,7 @@ export interface ITitleProps {
   className?: string;
 }
 
-export const Title: FC<ITitleProps> = props => {
+export const _Title: FC<ITitleProps> = props => {
   const { tag, children, className } = props;
 
   const Tag = tag || "h1";
@@ -23,3 +24,5 @@ export const Title: FC<ITitleProps> = props => {
     </Tag>
   );
 };
+
+export const Title = withAnimation<ITitleProps>(_Title);

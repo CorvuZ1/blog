@@ -17,6 +17,8 @@ export interface IHomePageProps {
 const HomePage: NextPage<IHomePageProps> = props => {
   const { slides, about } = props;
 
+  const aboutAnimationSide = slides.length > 0 ? "right" : "left";
+
   return (
     <Layout>
       {slides.length > 0 && (
@@ -28,9 +30,10 @@ const HomePage: NextPage<IHomePageProps> = props => {
       )}
 
       <Container>
-        <Section className="mb-0" animationSide="right">
-          <Title>Обо мне</Title>
+        <Section className="mb-0">
+          <Title animationSide={aboutAnimationSide}>Обо мне</Title>
           <About
+            animationSide={aboutAnimationSide}
             image={about.image}
             alt={about.alt}
             description={about.description}

@@ -48,6 +48,11 @@
       "type": "uid",
       "required": true,
       "targetField": "Name"
+    },
+    "Tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tag.tag"
     }
   }
 }

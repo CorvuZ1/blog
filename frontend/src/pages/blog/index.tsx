@@ -3,6 +3,7 @@ import { Container } from "~/components/container/container";
 import { Layout } from "~/components/layout/layout";
 import { Section } from "~/components/section/section";
 import { Title } from "~/components/title/title";
+import { Works } from "~/components/works/works";
 
 const AboutPage: NextPage = () => {
   return (

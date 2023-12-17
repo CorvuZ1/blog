@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Image } from "~/components/image/image";
 import Link from "next/link";
 import { Spinner } from "@material-tailwind/react";
+import { withAnimation } from "~/lib/hocs/with-animation";
 
 export interface ISliderItem {
   image: string;
@@ -23,7 +24,7 @@ export interface ISliderProps {
   items: ISliderItem[];
 }
 
-export const Slider: FC<ISliderProps> = props => {
+export const _Slider: FC<ISliderProps> = props => {
   const { items, className } = props;
 
   useEffect(() => {
@@ -86,3 +87,5 @@ export const Slider: FC<ISliderProps> = props => {
     </div>
   );
 };
+
+export const Slider = withAnimation<ISliderProps>(_Slider);
