@@ -6,12 +6,9 @@ export interface IWorksProps {
 }
 
 export const Works: FC<IWorksProps> = props => {
-  const [filters, setFilters] = useState({
-    search: "",
-    display: "row",
-    date: "desc",
-    type: ""
-  });
+  const { items, className } = props;
 
-  return <div></div>;
+  const [data, setData] = useState(items);
+
+  return <div className={className}></div>;
 };
