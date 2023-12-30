@@ -23,7 +23,8 @@ export type TGetAllWorksResponse = IDataResponse<{
   Name: string;
   Slug: string;
   Description: string;
-  Preview_Image: ISingleMedia;
+  Preview_Description: string;
+  Main_Image: ISingleMedia;
   Model: I3DModel;
   Gallery: IMultipleMedia;
 }>;

@@ -69,7 +69,7 @@ export const _Slider: FC<ISliderProps> = props => {
                   quality={80}
                   className="absolute left-0 top-0 z-0 h-full w-full object-cover"
                   src={slide.image}
-                  alt={slide.alt || ""}
+                  alt={slide.alt || slide.label || ""}
                   width={slide.width}
                   height={slide.height}
                 />

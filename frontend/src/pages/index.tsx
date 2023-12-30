@@ -49,10 +49,8 @@ const HomePage: NextPage<IHomePageProps> = props => {
 export default HomePage;
 
 export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
-  const about = await getAbout("?populate=Image");
-  const works = await getAllWorks(
-    "?populate=Preview_Image&pagination[limit]=8&sort=createdAt:desc"
-  );
+  const about = await getAbout("?populate=*");
+  const works = await getAllWorks("?populate=Main_Image&pagination[limit]=8&sort=createdAt:desc");
 
   if (!about) {
     return {
