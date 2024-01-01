@@ -3,22 +3,28 @@ import { Container } from "~/components/container/container";
 import { Layout } from "~/components/layout/layout";
 import { Section } from "~/components/section/section";
 import { Title } from "~/components/title/title";
+import { IWorksFiltersProps } from "~/components/works-filters/works-filters";
 import { IWorksListProps } from "~/components/works-list/works-list";
 import { Works } from "~/components/works/works";
-import { getAllWorks } from "~/lib/api/get/works";
+import { getAllTags } from "~/lib/api/get/tags";
+import { IGetAllWorksByFiltersValues, getAllWorksByFilters } from "~/lib/api/get/works";
 import { mapDataToWorksListProps } from "~/lib/helpers/data-mappers/works-list";
 
 export interface IAboutPageProps {
   works: IWorksListProps["items"];
+  types: IWorksFiltersProps["types"];
+  resultsCount: IWorksFiltersProps["resultsCount"];
 }
 
-const AboutPage: NextPage<IAboutPageProps> = ({ works }) => {
+const AboutPage: NextPage<IAboutPageProps> = props => {
+  const { types, works, resultsCount } = props;
+
   return (
     <Layout title="Блог">
       <Container>
         <Section>
           <Title>Блог</Title>
-          <Works items={works} />
+          <Works resultsCount={resultsCount} types={types} items={works} />
         </Section>
       </Container>
     </Layout>
@@ -28,16 +34,19 @@ const AboutPage: NextPage<IAboutPageProps> = ({ works }) => {
 export default AboutPage;
 
 export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async ({ query }) => {
-  const { search, date, type, page } = query;
+  const { search, date, type, page }: IGetAllWorksByFiltersValues = query;
 
-  const searchParam = search ? `&filters[Name][$containsi][0]=${search}` : "";
-  const dateParam = date ? `&sort=createdAt:${date}` : "";
-  const typeParam = type ? `&filters[Tag][Name][$eqi][1]=${type}` : "";
-  const pageParam = `&pagination[page]=${page || 1}&pagination[pageSize]=16`;
+  const works = await getAllWorksByFilters({
+    populate: "*",
+    date,
+    page,
+    search,
+    type
+  });
 
-  const works = await getAllWorks("?populate=*" + searchParam + typeParam + dateParam + pageParam);
+  const types = await getAllTags();
 
-  if (!works) {
+  if (!works || !types) {
     return {
       notFound: true
     };
@@ -45,7 +54,9 @@ export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async ({ 
 
   return {
     props: {
-      works: mapDataToWorksListProps(works, "/blog/")
+      works: mapDataToWorksListProps(works, "/blog/"),
+      types: types.data.map(item => item.attributes.Name),
+      resultsCount: works.meta.pagination.total
     }
   };
 };
