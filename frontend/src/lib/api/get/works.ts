@@ -25,17 +25,14 @@ export interface IGetAllWorksByFiltersValues {
   date?: string;
   type?: string;
   page?: number;
-  populate?: string;
 }
 
 export const getAllWorksByFilters = async ({
   search,
   date = "desc",
   type,
-  page,
-  populate
+  page
 }: IGetAllWorksByFiltersValues): Promise<TGetAllWorksResponse | false> => {
-  const populateValue = populate || "";
   const searchParam = search ? `&filters[Name][$containsi][0]=${search}` : "";
   const dateParam = `&sort=createdAt:${date}`;
   const typeParam = type ? `&filters[Tag][Name][$eqi][1]=${type}` : "";
@@ -43,9 +40,7 @@ export const getAllWorksByFilters = async ({
     page || 1
   }&pagination[pageSize]=16&pagination[withCount]=true`;
 
-  const data = await getAllWorks(
-    `?populate=${populateValue}` + searchParam + typeParam + dateParam + pageParam
-  );
+  const data = await getAllWorks("?populate=*" + searchParam + typeParam + dateParam + pageParam);
   return data;
 };
 

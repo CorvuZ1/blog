@@ -37,7 +37,6 @@ export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async ({ 
   const { search, date, type, page }: IGetAllWorksByFiltersValues = query;
 
   const works = await getAllWorksByFilters({
-    populate: "*",
     date,
     page,
     search,

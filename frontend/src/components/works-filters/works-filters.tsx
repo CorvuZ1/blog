@@ -1,17 +1,23 @@
 import { NextRouter, useRouter } from "next/router";
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, FC, SetStateAction, useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { IGetAllWorksByFiltersValues } from "~/lib/api/get/works";
 import { withAnimation } from "~/lib/hocs/with-animation";
 import { Search } from "~/components/search/search";
 import { Select } from "~/components/select/select";
 import { Button } from "~/components/button/button";
+import { debounce } from "lodash";
 
 export interface IWorksFiltersProps {
   className?: string;
   types: string[];
   setIsGridDisplay: Dispatch<SetStateAction<boolean>>;
   resultsCount: number;
+}
+
+interface IDebouncedPushValues {
+  value: string;
+  currentQuery: IGetAllWorksByFiltersValues;
 }
 
 const _WorksFilters: FC<IWorksFiltersProps> = props => {
@@ -27,23 +33,36 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
   useEffect(() => {
     push({
       query: {
-        search: params.search,
+        ...query,
         date: params.date,
         type: params.type
       }
     });
-  }, [params]);
+  }, [params.date, params.type]);
+
+  const debouncedPush = useCallback(
+    debounce(({ value, currentQuery }: IDebouncedPushValues) => {
+      push({
+        query: {
+          ...currentQuery,
+          search: value
+        }
+      });
+    }, 600),
+    []
+  );
+
+  const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    setParams(prev => ({ ...prev, search: value }));
+    debouncedPush({ value, currentQuery: query });
+  };
 
   return (
     <div className={twMerge("", className)}>
       <form method="GET">
-        <Search
-          name="search"
-          value={params.search}
-          onChange={e => {
-            setParams(prev => ({ ...prev, search: e.target.value }));
-          }}
-        />
+        <Search name="search" value={params.search} onChange={onSearchChange} />
         <Select
           value={params.date}
           name="date"
@@ -51,8 +70,8 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
             setParams(prev => ({ ...prev, date: e.target.value }));
           }}
         >
-          <option value="desc">От нового</option>
           <option value="asc">От старого</option>
+          <option value="desc">От нового</option>
         </Select>
         <Select
           value={params.type}
