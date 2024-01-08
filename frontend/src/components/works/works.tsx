@@ -21,6 +21,7 @@ export const Works: FC<IWorksProps> = props => {
         types={types}
         animationSide="right"
         setIsGridDisplay={setIsGridDisplay}
+        isGridDisplay={isGridDisplay}
       />
       <WorksList items={items} isGridDisplay={isGridDisplay} />
     </div>

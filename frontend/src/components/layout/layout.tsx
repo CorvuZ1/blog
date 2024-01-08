@@ -28,20 +28,18 @@ export const Layout: FC<ILayoutProps> = props => {
       <div
         className={twMerge(
           SFPro.variable,
-          "font-sf-pro text-md overflow-hidden text-white",
+          "font-sf-pro overflow-hidden text-white",
           className,
           theme
         )}
       >
-        <div className="font-regular">
-          <Container size="lg">
-            <Header className="mb-[55px]" />
-          </Container>
-          <main className="pb-[100px]">
-            {children}
-            <FixedNav className="z-10" />
-          </main>
-        </div>
+        <Container size="lg">
+          <Header className="mb-[55px]" />
+        </Container>
+        <main className="pb-[100px]">
+          {children}
+          <FixedNav className="z-10" />
+        </main>
       </div>
     </>
   );

@@ -9,8 +9,10 @@ export interface IIconProps {
 export const Icon: FC<IIconProps> = props => {
   const { name, className } = props;
 
-  const iconsStyles: Record<typeof name, string> = {
-    loupe: "w-[16px] h-[15px]"
+  const iconsStyles: Record<IIconProps["name"], string> = {
+    loupe: "w-[16px] h-[15px]",
+    row: "w-[16px] h-[10px]",
+    grid: "w-[16px] h-[16px]"
   };
 
   return (
