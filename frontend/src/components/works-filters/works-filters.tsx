@@ -50,7 +50,7 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
           search: value
         }
       });
-    }, 600),
+    }, 400),
     []
   );
 
@@ -124,7 +124,7 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
           Очистить
         </Button>
       </form>
-      {resultsCount}
+      <div className="text-light-green mt-[10px]">Результатов: {resultsCount}</div>
     </div>
   );
 };

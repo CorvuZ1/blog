@@ -17,12 +17,18 @@ export const DisplayTypeButton: FC<IDisplayTypeButton> = props => {
     <Button
       onClick={onClick}
       className={twMerge(
-        "bg-dark-green flex h-[45px] w-full max-w-[45px] items-center justify-center rounded-[5px]",
+        "bg-dark-green group flex h-[45px] w-full max-w-[45px] items-center justify-center rounded-[5px]",
         isActive && "bg-light-green",
         className
       )}
     >
-      <Icon name={type} className={twMerge("text-light-green", isActive && "text-dark-green")} />
+      <Icon
+        name={type}
+        className={twMerge(
+          "text-light-green",
+          isActive ? "text-dark-green" : "group-hover:text-dark-green"
+        )}
+      />
     </Button>
   );
 };

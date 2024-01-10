@@ -22,6 +22,7 @@ export const Works: FC<IWorksProps> = props => {
         animationSide="right"
         setIsGridDisplay={setIsGridDisplay}
         isGridDisplay={isGridDisplay}
+        className="mb-[43px]"
       />
       <WorksList items={items} isGridDisplay={isGridDisplay} />
     </div>

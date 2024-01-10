@@ -11,7 +11,7 @@ export const Icon: FC<IIconProps> = props => {
 
   const iconsStyles: Record<IIconProps["name"], string> = {
     loupe: "w-[16px] h-[15px]",
-    row: "w-[16px] h-[10px]",
+    row: "w-[17px] h-[11px]",
     grid: "w-[16px] h-[16px]"
   };
 
