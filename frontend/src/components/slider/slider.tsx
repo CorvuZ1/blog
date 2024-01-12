@@ -6,8 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Image } from "~/components/image/image";
 import Link from "next/link";
-import { Spinner } from "@material-tailwind/react";
 import { withAnimation } from "~/lib/hocs/with-animation";
+import { Loader } from "~/components/loader/loader";
 
 export interface ISliderItem {
   image: string;
@@ -15,8 +15,6 @@ export interface ISliderItem {
   href?: string;
   alt?: string;
   id?: number;
-  width: number;
-  height: number;
 }
 
 export interface ISliderProps {
@@ -63,15 +61,15 @@ export const _Slider: FC<ISliderProps> = props => {
                 className="xs:before:pt-[65%] relative h-fit w-full overflow-hidden before:relative before:block before:pt-[50.79%] after:absolute after:bottom-0 after:left-0 after:block after:h-[45px] after:w-full after:bg-gradient-to-t after:from-[black] after:from-0% after:to-transparent after:to-100%"
               >
                 <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
-                  <Spinner className="text-light-green/80 h-12 w-12 [&_path:nth-child(1)]:hidden [&_path:nth-child(2)]:stroke-[white]" />
+                  <Loader />
                 </div>
                 <Image
                   quality={80}
                   className="absolute left-0 top-0 z-0 h-full w-full object-cover"
+                  width={900}
+                  height={500}
                   src={slide.image}
                   alt={slide.alt || slide.label || ""}
-                  width={slide.width}
-                  height={slide.height}
                 />
                 {slide.label && (
                   <p className="text-xxl font-heavy absolute left-0 top-0 px-[33px] pt-[26px]">

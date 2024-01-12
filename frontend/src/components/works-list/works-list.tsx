@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { twMerge } from "tailwind-merge";
 import { IWorkCardProps, WorkCard } from "~/components/word-card/word-card";
 
 export interface IWorksListProps {
@@ -11,10 +12,12 @@ export const WorksList: FC<IWorksListProps> = props => {
   const { items, className, isGridDisplay } = props;
 
   return (
-    <div className="">
+    <div
+      className={twMerge("grid gap-[28px]", isGridDisplay && "grid-cols-2 gap-[15px]", className)}
+    >
       {items.length > 0 ? (
         items.map((item, index) => (
-          <div className="" key={item.id || index}>
+          <div key={item.id || index}>
             <WorkCard
               animationSide={index % 2 === 0 ? "left" : "right"}
               isSimpleVariant={isGridDisplay}

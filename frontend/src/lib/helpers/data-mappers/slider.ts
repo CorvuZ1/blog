@@ -10,7 +10,5 @@ export const mapDataToSliderProps = (
     label: item.attributes.Name,
     alt: item.attributes.Main_Image.data.attributes.alternativeText,
     id: item.id,
-    width: item.attributes.Main_Image.data.attributes.width,
-    height: item.attributes.Main_Image.data.attributes.height,
     ...(item.attributes.Slug && baseHrefUrl && { href: baseHrefUrl + item.attributes.Slug })
   }));

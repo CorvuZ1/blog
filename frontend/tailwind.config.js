@@ -16,6 +16,7 @@ module.exports = withMT({
     },
     fontWeight: {
       regular: "400",
+      semibold: "600",
       heavy: "800"
     },
     fontFamily: {

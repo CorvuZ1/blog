@@ -54,10 +54,11 @@
       "type": "customField",
       "options": {
         "output": "HTML",
-        "preset": "rich"
+        "preset": "rich",
+        "maxLengthCharacters": 250
       },
       "customField": "plugin::ckeditor.CKEditor",
-      "required": true
+      "required": false
     },
     "Description": {
       "type": "customField",

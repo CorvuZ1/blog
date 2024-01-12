@@ -63,7 +63,10 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
 
   return (
     <div className={twMerge("", className)}>
-      <form method="GET" className="grid grid-cols-10 gap-[16px]">
+      <form
+        method="GET"
+        className="grid grid-cols-[repeat(8,minmax(0,1fr))_repeat(2,45px)] gap-[16px]"
+      >
         <Search
           className="col-span-8"
           placeholder="Поиск"
@@ -90,8 +93,8 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
             setParams(prev => ({ ...prev, date: e.target.value }));
           }}
         >
-          <option value="asc">От старого</option>
           <option value="desc">От нового</option>
+          <option value="asc">От старого</option>
         </Select>
         <Select
           className="col-span-4"

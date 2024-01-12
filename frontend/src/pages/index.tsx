@@ -37,8 +37,6 @@ const HomePage: NextPage<IHomePageProps> = props => {
             image={about.image}
             alt={about.alt}
             description={about.description}
-            width={about.width}
-            height={about.height}
           />
         </Section>
       </Container>
@@ -65,8 +63,6 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
       about: {
         description: about.data.attributes.Description,
         image: about.data.attributes.Image.data.attributes.url,
-        width: about.data.attributes.Image.data.attributes.width,
-        height: about.data.attributes.Image.data.attributes.height,
         alt: about.data.attributes.Image.data.attributes.alternativeText
       }
     },
