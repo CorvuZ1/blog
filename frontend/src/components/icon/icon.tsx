@@ -14,7 +14,7 @@ export const Icon: FC<IIconProps> = props => {
     row: "w-[17px] h-[11px]",
     grid: "w-[16px] h-[16px]",
     clock: "w-[18px] h-[18px]",
-    arrow: "w-[32px] h-[32px]"
+    arrow: "w-[30px] h-[30px]"
   };
 
   return (
