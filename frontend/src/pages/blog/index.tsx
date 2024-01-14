@@ -3,28 +3,28 @@ import { Container } from "~/components/container/container";
 import { Layout } from "~/components/layout/layout";
 import { Section } from "~/components/section/section";
 import { Title } from "~/components/title/title";
-import { IWorksFiltersProps } from "~/components/works-filters/works-filters";
-import { IWorksListProps } from "~/components/works-list/works-list";
-import { Works } from "~/components/works/works";
+import { IWorksProps, Works } from "~/components/works/works";
 import { getAllTags } from "~/lib/api/get/tags";
-import { IGetAllWorksByFiltersValues, getAllWorksByFilters } from "~/lib/api/get/works";
 import { mapDataToWorksListProps } from "~/lib/helpers/data-mappers/works-list";
+import { IGetAllWorksByFiltersValues, getAllWorksByFilters } from "~/lib/utils/works-filter";
 
-export interface IAboutPageProps {
-  works: IWorksListProps["items"];
-  types: IWorksFiltersProps["types"];
-  resultsCount: IWorksFiltersProps["resultsCount"];
-}
+export interface IAboutPageProps extends IWorksProps {}
 
 const AboutPage: NextPage<IAboutPageProps> = props => {
-  const { types, works, resultsCount } = props;
+  const { types, items, resultsCount, currentPage, countPage } = props;
 
   return (
     <Layout title="Блог">
       <Container>
         <Section>
           <Title>Блог</Title>
-          <Works resultsCount={resultsCount} types={types} items={works} />
+          <Works
+            resultsCount={resultsCount}
+            types={types}
+            items={items}
+            currentPage={currentPage}
+            countPage={countPage}
+          />
         </Section>
       </Container>
     </Layout>
@@ -53,9 +53,11 @@ export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async ({ 
 
   return {
     props: {
-      works: mapDataToWorksListProps(works, "/blog/"),
+      items: mapDataToWorksListProps(works, "/blog/"),
       types: types.data.map(item => item.attributes.Name),
-      resultsCount: works.meta.pagination.total
+      resultsCount: works.meta.pagination.total,
+      countPage: works.meta.pagination.pageCount,
+      currentPage: works.meta.pagination.page
     }
   };
 };

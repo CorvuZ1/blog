@@ -1,13 +1,23 @@
 import { NextRouter, useRouter } from "next/router";
-import { ChangeEvent, Dispatch, FC, SetStateAction, useCallback, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import { twMerge } from "tailwind-merge";
-import { IGetAllWorksByFiltersValues } from "~/lib/api/get/works";
-import { withAnimation } from "~/lib/hocs/with-animation";
+import { debounce } from "lodash";
 import { Search } from "~/components/search/search";
 import { Select } from "~/components/select/select";
 import { Button } from "~/components/button/button";
-import { debounce } from "lodash";
-import { DisplayTypeButton } from "../display-type-button/display-type-button";
+import { DisplayTypeButton } from "~/components/display-type-button/display-type-button";
+import { withAnimation } from "~/lib/hocs/with-animation";
+import { IGetAllWorksByFiltersValues } from "~/lib/utils/works-filter";
+import { useIsFirstRender } from "~/lib/hooks/first-render";
 
 export interface IWorksFiltersProps {
   className?: string;
@@ -25,6 +35,7 @@ interface IDebouncedPushValues {
 const _WorksFilters: FC<IWorksFiltersProps> = props => {
   const { setIsGridDisplay, types, className, resultsCount, isGridDisplay } = props;
 
+  const isFirstRender = useIsFirstRender();
   const { query, push }: { query: IGetAllWorksByFiltersValues } & NextRouter = useRouter();
   const [params, setParams] = useState<IGetAllWorksByFiltersValues>({
     date: query.date || "desc",
@@ -33,13 +44,15 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
   });
 
   useEffect(() => {
-    push({
-      query: {
-        ...query,
-        date: params.date,
-        type: params.type
-      }
-    });
+    !isFirstRender &&
+      push({
+        query: {
+          ...query,
+          date: params.date,
+          type: params.type,
+          page: "1"
+        }
+      });
   }, [params.date, params.type]);
 
   const debouncedPush = useCallback(
@@ -47,7 +60,8 @@ const _WorksFilters: FC<IWorksFiltersProps> = props => {
       push({
         query: {
           ...currentQuery,
-          search: value
+          search: value,
+          page: "1"
         }
       });
     }, 400),

@@ -20,30 +20,6 @@ export const getAllWorks = async (params?: string): Promise<TGetAllWorksResponse
   }
 };
 
-export interface IGetAllWorksByFiltersValues {
-  search?: string;
-  date?: string;
-  type?: string;
-  page?: number;
-}
-
-export const getAllWorksByFilters = async ({
-  search,
-  date = "desc",
-  type,
-  page
-}: IGetAllWorksByFiltersValues): Promise<TGetAllWorksResponse | false> => {
-  const searchParam = search ? `&filters[Name][$containsi][0]=${search}` : "";
-  const dateParam = `&sort=createdAt:${date}`;
-  const typeParam = type ? `&filters[Tag][Name][$eqi][1]=${type}` : "";
-  const pageParam = `&pagination[page]=${
-    page || 1
-  }&pagination[pageSize]=16&pagination[withCount]=true`;
-
-  const data = await getAllWorks("?populate=*" + searchParam + typeParam + dateParam + pageParam);
-  return data;
-};
-
 export type TGetAllWorksResponse = IDataResponse<{
   Name: string;
   Slug: string;
