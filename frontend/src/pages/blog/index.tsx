@@ -16,7 +16,7 @@ const AboutPage: NextPage<IAboutPageProps> = props => {
   return (
     <Layout title="Блог">
       <Container>
-        <Section>
+        <Section className="mb-0">
           <Title>Блог</Title>
           <Works
             resultsCount={resultsCount}
