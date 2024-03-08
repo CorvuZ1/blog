@@ -1,9 +1,10 @@
 import { ISliderProps } from "~/components/slider/slider";
-import { TGetAllWorksResponse } from "~/lib/api/get/works";
+import { TGetWorksResponse } from "~/lib/api/get/works";
+import { IMedia } from "~/lib/api/types/models/file";
 
-export const mapDataToSliderProps = (
-  { data }: TGetAllWorksResponse,
-  baseHrefUrl?: string
+export const mapDataToGeneralSliderProps = (
+  { data }: TGetWorksResponse,
+  baseHrefUrl: string
 ): ISliderProps["items"] =>
   data.map(item => ({
     image: item.attributes.Main_Image.data.attributes.url,
@@ -11,4 +12,12 @@ export const mapDataToSliderProps = (
     alt: item.attributes.Main_Image.data.attributes.alternativeText,
     id: item.id,
     ...(item.attributes.Slug && baseHrefUrl && { href: baseHrefUrl + item.attributes.Slug })
+  }));
+
+export const mapDataToDetailSliderProps = ({ data }: IMedia): ISliderProps["items"] =>
+  data.map(item => ({
+    image: item.attributes.url,
+    alt: item.attributes.alternativeText,
+    href: item.attributes.caption,
+    id: item.id
   }));

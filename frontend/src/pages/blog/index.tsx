@@ -8,9 +8,9 @@ import { getAllTags } from "~/lib/api/get/tags";
 import { mapDataToWorksListProps } from "~/lib/helpers/data-mappers/works-list";
 import { IGetAllWorksByFiltersValues, getAllWorksByFilters } from "~/lib/utils/works-filter";
 
-export interface IAboutPageProps extends IWorksProps {}
+export interface IBlogPageProps extends IWorksProps {}
 
-const AboutPage: NextPage<IAboutPageProps> = props => {
+const BlogPage: NextPage<IBlogPageProps> = props => {
   const { types, items, resultsCount, currentPage, countPage } = props;
 
   return (
@@ -31,9 +31,9 @@ const AboutPage: NextPage<IAboutPageProps> = props => {
   );
 };
 
-export default AboutPage;
+export default BlogPage;
 
-export const getServerSideProps: GetServerSideProps<IAboutPageProps> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps<IBlogPageProps> = async ({ query }) => {
   const { search, date, type, page }: IGetAllWorksByFiltersValues = query;
 
   const works = await getAllWorksByFilters({

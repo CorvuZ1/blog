@@ -20,14 +20,6 @@
         "images"
       ]
     },
-    "Model": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "files"
-      ]
-    },
     "Name": {
       "type": "string",
       "required": true
@@ -68,6 +60,9 @@
       },
       "required": true,
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "Model": {
+      "type": "text"
     }
   }
 }

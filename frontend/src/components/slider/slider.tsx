@@ -20,10 +20,11 @@ export interface ISliderItem {
 export interface ISliderProps {
   className?: string;
   items: ISliderItem[];
+  appLinks?: boolean;
 }
 
 export const _Slider: FC<ISliderProps> = props => {
-  const { items, className } = props;
+  const { items, className, appLinks } = props;
 
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
@@ -52,7 +53,7 @@ export const _Slider: FC<ISliderProps> = props => {
       <div className="swiper-wrapper ">
         {items.map((slide, index) => {
           const { href } = slide;
-          const Tag = href ? Link : "div";
+          const Tag = href ? (appLinks ? Link : "a") : "div";
 
           return (
             <div className="swiper-slide" key={slide.id || index}>

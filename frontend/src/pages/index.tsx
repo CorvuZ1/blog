@@ -7,7 +7,7 @@ import { Slider, ISliderProps } from "~/components/slider/slider";
 import { Title } from "~/components/title/title";
 import { getAbout } from "~/lib/api/get/about";
 import { getAllWorks } from "~/lib/api/get/works";
-import { mapDataToSliderProps } from "~/lib/helpers/data-mappers/slider";
+import { mapDataToGeneralSliderProps } from "~/lib/helpers/data-mappers/slider";
 
 export interface IHomePageProps {
   slides: ISliderProps["items"];
@@ -24,7 +24,7 @@ const HomePage: NextPage<IHomePageProps> = props => {
       {slides.length > 0 && (
         <Section isDiv>
           <Container size="lg">
-            <Slider items={slides} />
+            <Slider appLinks items={slides} />
           </Container>
         </Section>
       )}
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
 
   return {
     props: {
-      slides: works ? mapDataToSliderProps(works, "/blog/") : [],
+      slides: works ? mapDataToGeneralSliderProps(works, "/blog/") : [],
       about: {
         description: about.data.attributes.Description,
         image: about.data.attributes.Image.data.attributes.url,
